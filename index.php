@@ -1,5 +1,6 @@
 <?php
 //All currencies from API
+//Liza kappara alaih
 $curl = curl_init();
 curl_setopt_array($curl, array(
     CURLOPT_URL => "https://api.exchangeratesapi.io/latest ",
@@ -14,53 +15,6 @@ $currency_value = [];
 foreach ($response as $rate => $value) {
     $currency[] = $rate;
 }
-// foreach ($response as $rate => $value) {
-//     $currency_value[] = $value;
-// }
-
-// //Submit Form
-// if (isset($_POST['submit'])) {
-//     $name = trim($_POST['name']);
-//     $phone = trim($_POST['phone']);
-//     $email = trim($_POST['email']);
-//     $country = trim($_POST['country']);
-//     $_SESSION['customer'] = $name;
-
-//     if (empty($name)) {
-//         $err = 'Insert your name';
-//     } elseif (empty($phone)) {
-//         $err = 'Insert your phone number';
-//     } elseif (empty($email)) {
-//         $err = 'Insert your email';
-//     } elseif (empty($country)) {
-//         $err = 'Choose your country';
-//     } else {
-//         $name = strtolower(trim(filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING)));
-//         $phone = strtolower(trim(filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_NUMBER_INT)));
-//         $email = strtolower(trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL)));
-//         $country = strtolower(trim(filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING)));
-//         if ($link = db_connect()) {
-
-//             $sql = "SELECT * FROM customers WHERE email = '$email' ";
-//             $result = mysqli_query($link, $sql);
-//             if ($result && mysqli_num_rows($result) > 0) {
-//                 $err = "Your email already have been sent";
-//             } else {
-//                 $name = mysqli_real_escape_string($link, $name);
-//                 $phone = mysqli_real_escape_string($link, $phone);
-//                 $email = mysqli_real_escape_string($link, $email);
-//                 $country = mysqli_real_escape_string($link, $country);
-//                 $sql = "INSERT INTO customers (id, name, country, phone, email, created_at, updated_at) VALUES ('', '$name', '$country', '$phone','$email', CURRENT_TIME(), CURRENT_TIME());";
-//                 $result = mysqli_query($link, $sql);
-//                 if ($result && mysqli_affected_rows($link) > 0) {
-//                     header('Location: thanks.php');
-//                 } else {
-//                     $err = "There was a problem to send your detailes, please try again later";
-//                 }
-//             }
-//         }
-//     }
-// }
 ?>
 <!doctype html>
 <html lang="en">
