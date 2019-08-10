@@ -61,31 +61,31 @@ foreach ($response as $rate => $value) {
                     <div class="row">
                         <div class="col-md-6 col-sm-6 ">
                             <form class="form" method="POST">
-                                <div>
-                                    <select name="changeFrom" id="changeFrom" class="invalid select-css">
+                                <div> 
+                                    <select name="changeFrom" id="changeFrom" class="custom-select invalid col-md-3 col-sm-3">
                                         <option value="0">Change From</option>
                                         <?php foreach ($currency as $curr): ?>
                                         <option id="changeFrom" value="<?=$curr?>"><?=$curr?></option>
                                         <?php endforeach;?>
                                         <option value="EUR">EUR</option>
                                     </select>
-                                    <select name="changeTo" id="changeTo" class="invalid select-css">
+                                    <select name="changeTo" id="changeTo" class="custom-select invalid col-md-3 col-sm-3">
                                         <option value="0">Change To</option>
                                         <?php foreach ($currency as $curr): ?>
                                         <option id="changeTo" value="<?=$curr?>"><?=$curr?></option>
                                         <?php endforeach;?>
                                         <option value="EUR">EUR</option>
                                     </select>
-                                    <input type="text" id="amount" name="amount" placeholder="Insert value"
-                                        style="width: 93px;" class="invalid">
+                                    <input class="btn" type="text" id="amount" name="amount" placeholder="Insert value"
+                                        style="width: 115px;border: 1px solid #ced4da;" class="invalid">
                                     <input name="web" type="hidden" value="web">
-                                    <input name="submit" type="submit" value="CONVERT">
+                                    <input class="btn btn-outline-secondary" name="submit" type="submit" value="CONVERT">
                                 </div>
 
                             </form>
                         </div>
                         <div class="col-md-6 col-sm-6 allChangeTo">
-                            <ul id="list">
+                            <ul class="currency-list" id="list">
 
                             </ul>
                         </div>
@@ -105,12 +105,12 @@ foreach ($response as $rate => $value) {
 
             </div>
         </div>
-        <footer class="footer">
-            <p>Easy Coin Converter &copy; </p>
-        </footer>
+        
         </div>
     </main>
-
+    <footer class="footer">
+            <p>Easy Coin Converter &copy; </p>
+        </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
