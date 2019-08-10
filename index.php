@@ -62,14 +62,14 @@ foreach ($response as $rate => $value) {
                         <div class="col-md-6 col-sm-6 ">
                             <form class="form" method="POST">
                                 <div>
-                                    <select name="changeFrom" id="changeFrom" class="invalid">
+                                    <select name="changeFrom" id="changeFrom" class="invalid select-css">
                                         <option value="0">Change From</option>
                                         <?php foreach ($currency as $curr): ?>
                                         <option id="changeFrom" value="<?=$curr?>"><?=$curr?></option>
                                         <?php endforeach;?>
                                         <option value="EUR">EUR</option>
                                     </select>
-                                    <select name="changeTo" id="changeTo" class="invalid">
+                                    <select name="changeTo" id="changeTo" class="invalid select-css">
                                         <option value="0">Change To</option>
                                         <?php foreach ($currency as $curr): ?>
                                         <option id="changeTo" value="<?=$curr?>"><?=$curr?></option>
@@ -77,7 +77,7 @@ foreach ($response as $rate => $value) {
                                         <option value="EUR">EUR</option>
                                     </select>
                                     <input type="text" id="amount" name="amount" placeholder="Insert value"
-                                        style="width: 93px;" class="invalid">
+                                        style="width: 93px;" class="invalid amount">
                                     <input type="submit" value="CONVERT">
                                 </div>
 
