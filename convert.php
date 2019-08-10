@@ -1,10 +1,41 @@
 <?php
 
 //prevent users to acsess this page
-session_start(); 
-if (!isset($_SESSION["username"])) {
+if (isset($_POST['web'])) {
+    //get user data from AJAX and send response
+    if (isset($_POST["submit"])) {
+        $changeTo = [];
+        $changeFrom = $_POST['changeFromSelection'];
+        $changeTo = json_decode($_POST['changeTo']);
+        $amount = $_POST['amount'];
+
+        if ($results = dataFromDB($changeFrom, $changeTo, $amount)) {
+
+            print_r(json_encode($results));
+        } else {
+
+            // get Currency from API
+            $currency = getCurrency($changeFrom);
+
+            //calculation
+            foreach ($changeTo as $data) {
+                $results[] = $amount * $currency[$data];
+            }
+
+            foreach ($changeTo as $k) {
+                $db_arr[$k] = $currency[$k];
+            }
+
+            //set data to db
+            setDataToDB($changeFrom, $db_arr);
+
+            //return results to UI
+            print_r(json_encode($results));
+
+        }
+    }
+} else {
     header("location: index.php");
-    exit; 
 }
 
 //currency from API
@@ -24,40 +55,6 @@ function getCurrency($changeFrom, $rate = '')
         $currency[$rate] = $value;
     }
     return $currency;
-}
-
-//get user data from AJAX and send response
-if (isset($_POST['submit'])) {
-    $changeTo = [];
-    $changeFrom = $_POST['changeFromSelection'];
-    $changeTo = json_decode($_POST['changeTo']);
-    $amount = $_POST['amount'];
-
-    if ($results = dataFromDB($changeFrom, $changeTo, $amount)) {
-
-        print_r(json_encode($results));
-    } else {
-
-        // get Currency from API
-        $currency = getCurrency($changeFrom);
-
-        //calculation
-        foreach ($changeTo as $data) {
-            $results[] = $amount * $currency[$data];
-        }
-
-        foreach ($changeTo as $k) {
-            $db_arr[$k] = $currency[$k];
-        }
-
-        //set data to db
-        setDataToDB($changeFrom, $db_arr);
-
-        //return results to UI
-        print_r(json_encode($results));
-
-    }
-
 }
 
 //DB Connection
