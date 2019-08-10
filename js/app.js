@@ -66,7 +66,8 @@ form.addEventListener('submit', e => {
                 submit: 'submit',
                 changeFromSelection: changeFromSelection,
                 changeTo: JSON.stringify(changeToArray),
-                amount: form.amount.value
+                amount: form.amount.value,
+                web:"web"
             },
             success: function (result) {
                 if (result) {

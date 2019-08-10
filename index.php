@@ -124,7 +124,8 @@ foreach ($response as $rate => $value) {
                                     </select>
                                     <input type="text" id="amount" name="amount" placeholder="Insert value"
                                         style="width: 93px;" class="invalid">
-                                    <input type="submit" value="CONVERT">
+                                    <input name="web" type="hidden" value="web">
+                                    <input name="submit" type="submit" value="CONVERT">
                                 </div>
 
                             </form>
