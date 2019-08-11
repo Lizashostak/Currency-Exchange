@@ -109,7 +109,7 @@ foreach ($response as $rate => $value) {
         </div>
     </main>
     <footer class="footer">
-            <p>Easy Coin Converter &copy; </p>
+            <p>Currency Exchange &copy; </p>
         </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
