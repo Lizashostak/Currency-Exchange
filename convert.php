@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 //prevent users to acsess this page
 if (isset($_POST['web'])) {
     //get user data from AJAX and send response
@@ -8,6 +8,7 @@ if (isset($_POST['web'])) {
         $changeFrom = $_POST['changeFromSelection'];
         $changeTo = json_decode($_POST['changeTo']);
         $amount = $_POST['amount'];
+
         if ($results = dataFromDB($changeFrom, $changeTo, $amount)) {
             print_r(json_encode($results));
         } else {
@@ -22,8 +23,12 @@ if (isset($_POST['web'])) {
                 $db_arr[$k] = $currency[$k];
             }
 
-            //set data to db
-            setDataToDB($changeFrom, $db_arr);
+            // set data to db
+            if (setDataToDB($changeFrom, $db_arr)) {
+                $msg = 'Data saved succefuly';
+            } else {
+                $msg = 'DB connection unavailible right now';
+            }
 
             //return results to UI
             print_r(json_encode($results));
@@ -56,13 +61,14 @@ function db_connect()
     if ($link = mysqli_connect('localhost', 'root', '', 'currency_convertor')) {
         return $link;
     } else {
-        $err_db = 'Data Base connection is unavaliable right now, please try later';
+        return false;
     }
 }
 //check if data exist in DB
 function dataFromDB($changeFrom, $changeTo, $amount)
 {
-    if ($link = db_connect()) {
+    if (db_connect()) {
+        $link = db_connect();
         $date = date("Y-m-d");
         $sql = "SELECT * FROM daily_currency WHERE created_at='$date' AND base='$changeFrom'";
         $result = mysqli_query($link, $sql);
@@ -91,6 +97,8 @@ function dataFromDB($changeFrom, $changeTo, $amount)
             }
             return $results;
         }
+    } else {
+        return false;
     }
 }
 //insert currency if diff
