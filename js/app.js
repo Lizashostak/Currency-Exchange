@@ -33,7 +33,9 @@ $('#changeFrom').change(function () {
 changeToInput.addEventListener('change', e => {
     let changeTo = e.target.value;
     //add currency to list
-    addCurrensyList(changeTo);
+    if (e.target.value != 0) {
+        addCurrensyList(changeTo);
+    }
 })
 
 //delete from currency list
@@ -67,7 +69,7 @@ form.addEventListener('submit', e => {
                 changeFromSelection: changeFromSelection,
                 changeTo: JSON.stringify(changeToArray),
                 amount: form.amount.value,
-                web:"web"
+                web: "web"
             },
             success: function (result) {
                 if (result) {
