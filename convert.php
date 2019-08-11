@@ -8,15 +8,11 @@ if (isset($_POST['web'])) {
         $changeFrom = $_POST['changeFromSelection'];
         $changeTo = json_decode($_POST['changeTo']);
         $amount = $_POST['amount'];
-
         if ($results = dataFromDB($changeFrom, $changeTo, $amount)) {
-
             print_r(json_encode($results));
         } else {
-
             // get Currency from API
             $currency = getCurrency($changeFrom);
-
             //calculation
             foreach ($changeTo as $data) {
                 $results[] = $amount * $currency[$data];
@@ -37,7 +33,6 @@ if (isset($_POST['web'])) {
 } else {
     header("location: index.php");
 }
-
 //currency from API
 function getCurrency($changeFrom, $rate = '')
 {
@@ -49,14 +44,12 @@ function getCurrency($changeFrom, $rate = '')
     $response = curl_exec($curl);
     $response = json_decode($response);
     $response = $response->rates;
-
     $currency = [];
     foreach ($response as $rate => $value) {
         $currency[$rate] = $value;
     }
     return $currency;
 }
-
 //DB Connection
 function db_connect()
 {
@@ -66,7 +59,6 @@ function db_connect()
         $err_db = 'Data Base connection is unavaliable right now, please try later';
     }
 }
-
 //check if data exist in DB
 function dataFromDB($changeFrom, $changeTo, $amount)
 {
@@ -82,11 +74,9 @@ function dataFromDB($changeFrom, $changeTo, $amount)
             foreach ($data as $d) {
                 $calc_array[$d['currency']] = $d['rate'];
             }
-
             //check diff between db data and user request
             $diff = array_diff($changeTo, array_flip($calc_array));
             $rate = implode(",", $diff);
-
             //if diff get data from api for diff and insert to calc array
             if ($diff) {
                 $response = getCurrency($changeFrom, $rate);
@@ -100,11 +90,9 @@ function dataFromDB($changeFrom, $changeTo, $amount)
                 $results[] = $amount * $calc_array[$change];
             }
             return $results;
-
         }
     }
 }
-
 //insert currency if diff
 function updateDB($changeFrom, $difference)
 {
@@ -117,7 +105,6 @@ function updateDB($changeFrom, $difference)
         $result = mysqli_multi_query($link, $sql);
     }
 }
-
 //set data to db
 function setDataToDB($base, $db_arr)
 {
@@ -131,7 +118,6 @@ function setDataToDB($base, $db_arr)
                 $sql .= "INSERT INTO daily_currency(id,base,currency,rate,created_at,updated_at) VALUES('','$base','$k','$v','$date','$date');";
             }
             $result = mysqli_multi_query($link, $sql);
-
         }
     }
 }

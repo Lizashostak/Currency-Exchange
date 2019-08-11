@@ -1,5 +1,9 @@
 body {
-    background-color: #b5c6bef0;
+    background-color: #ddddddf0;
+}
+
+main{
+    min-height: 100%;
 }
 
 .box-1 {
@@ -7,6 +11,8 @@ body {
     margin: 20px;
     padding: 12px;
     max-width: 1098px;
+    border: 1px solid #dfe1e5;
+    border-radius: 8px;
 }
 
 .box-2 {
@@ -14,10 +20,15 @@ body {
     margin: 20px;
     padding: 12px;
     max-width: 1098px;
+    border: 1px solid #dfe1e5;
+    border-radius: 8px;
 }
 
 li {
     list-style-type: none;
+}
+.currency-list li{
+    display: inline;
 }
 
 li>span {
@@ -36,4 +47,7 @@ li>span {
     margin: 10px;
     text-align: center;
     background-color: #ff00001f;
+}
+footer{
+    text-align: center;
 }
