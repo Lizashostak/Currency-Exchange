@@ -43,14 +43,17 @@ foreach ($response as $rate => $value) {
             <div class="row ">
                 <div class="col-md-12 header">
                     <div class="row">
-                        <div class="col-md-3 col-sm-3"></div>
-                        <div class="col-md-5 col-sm-5">
-                            <h1>Currency Exchange</h1>
+                        <!-- <div class="col-md-3 col-sm-3"></div> -->
+                        <div class="col-md-12 col-sm-12 text-center">
+                            <h1>Currency Exchange
+                                <span style="display:inline-block">
+                                 <i class="fas fa-euro-sign"></i>
+                                 <i class="fas fa-sync"></i>
+                                 <i class="fas fa-dollar-sign"></i>
+                                </span>
+                            </h1>
                         </div>
-                        <div class="col-md-1 col-sm-1">
-                            <img src="imgs/logo.png" style="height: 60%">
-                        </div>
-                        <div class="col-md-3 col-sm-3"></div>
+                        <!-- <div class="col-md-3 col-sm-3"></div> -->
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 "></div>
@@ -58,32 +61,32 @@ foreach ($response as $rate => $value) {
                 <div class="col-md-3 col-sm-3 "></div>
                 <div class="col-md-12 col-sm-12 box-1">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 ">
+                        <div class="col-md-8 col-sm-6 ">
                             <form class="form" method="POST">
-                                <div> 
-                                    <select name="changeFrom" id="changeFrom" class="custom-select invalid col-md-3 col-sm-3">
+                                <div>
+                                    <select name="changeFrom" id="changeFrom" class="custom-select invalid col-md-3 col-sm-6">
                                         <option value="0">Change From</option>
                                         <?php foreach ($currency as $curr): ?>
                                         <option id="changeFrom" value="<?=$curr?>"><?=$curr?></option>
                                         <?php endforeach;?>
                                         <option value="EUR">EUR</option>
                                     </select>
-                                    <select name="changeTo" id="changeTo" class="custom-select invalid col-md-3 col-sm-3">
+                                    <select name="changeTo" id="changeTo" class="custom-select invalid col-md-3 col-sm-6">
                                         <option value="0">Change To</option>
                                         <?php foreach ($currency as $curr): ?>
                                         <option id="changeTo" value="<?=$curr?>"><?=$curr?></option>
                                         <?php endforeach;?>
                                         <option value="EUR">EUR</option>
                                     </select>
-                                    <input class="btn" type="text" id="amount" name="amount" placeholder="Insert value"
-                                        style="width: 115px;border: 1px solid #ced4da;" class="invalid">
+                                    <input class="amount col-md-2 col-sm-6" type="number" id="amount" name="amount" placeholder="Insert value"
+                                        style="border: 1px solid #ced4da; padding: 6px;" class="invalid">
                                     <input name="web" type="hidden" value="web">
-                                    <input class="btn btn-outline-secondary" name="submit" type="submit" value="CONVERT">
+                                    <input class="btn btn-outline-secondary col-md-3 col-sm-6" name="submit" type="submit" value="CONVERT">
                                 </div>
 
                             </form>
                         </div>
-                        <div class="col-md-6 col-sm-6 allChangeTo">
+                        <div class="col-md-4 col-sm-6 allChangeTo">
                             <ul class="currency-list" id="list">
 
                             </ul>
@@ -93,7 +96,7 @@ foreach ($response as $rate => $value) {
 
                 <div class="col-md-12 col-sm-12 change-form box-2">
                     <table class="table" id="myTable">
-                        <tr class="thead-dark">
+                        <tr class="table-th">
                             <th scope="col">Change From</th>
                             <th scope="col">Change To</th>
                             <th scope="col">Change Rate</th>
@@ -104,7 +107,7 @@ foreach ($response as $rate => $value) {
 
             </div>
         </div>
-        
+
         </div>
     </main>
     <footer class="footer">
