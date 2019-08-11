@@ -17,13 +17,17 @@ if (isset($_POST['web'])) {
             foreach ($changeTo as $data) {
                 $results[] = $amount * $currency[$data];
             }
+
             foreach ($changeTo as $k) {
                 $db_arr[$k] = $currency[$k];
             }
+
             //set data to db
             setDataToDB($changeFrom, $db_arr);
+
             //return results to UI
             print_r(json_encode($results));
+
         }
     }
 } else {
