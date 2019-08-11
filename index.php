@@ -152,7 +152,7 @@ foreach ($response as $rate => $value) {
             </div>
         </div>
         <footer class="footer">
-            <p>Easy Coin Converter &copy; </p>
+            <p>Currency Exchange &copy; </p>
         </footer>
         </div>
     </main>
